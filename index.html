@@ -10,7 +10,7 @@
         padding: 0;
         width: 100vw;
         height: 100vh;
-        background-color: #f5f5f5; /* Light grey background */
+        background-color: #f5f5f5;
         font-family: sans-serif;
         display: flex;
         flex-direction: column;
@@ -30,8 +30,8 @@
         border-radius: 4px;
         border: none;
         margin: 0 auto;
-        display: block;
-        position: fixed;
+        /* absolute/fixed allows it to float over the viewer */
+        position: absolute; 
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
@@ -43,10 +43,12 @@
         z-index: 10;
         cursor: pointer;
         transition: background 0.2s;
+        
+        /* Note: model-viewer automatically sets display:none if AR is not supported */
       }
       
       #ar-button:hover {
-        background-color: #f0f0f0;
+        background-color: #a01515;
       }
 
       /* Loading Bar */
@@ -58,7 +60,7 @@
         position: absolute;
         top: 50%;
         left: 35%;
-        display: none; /* Hidden by default, shown while loading */
+        display: none; 
       }
       
       model-viewer[loading] #progress-bar {
@@ -68,7 +70,7 @@
   </head>
   <body>
 
-    <model-viewer of
+    <model-viewer 
         src="Brain.glb" 
         ios-src="Brain.usdz"
         alt="A 3D model of an office chair"
@@ -81,7 +83,7 @@
         field-of-view="30deg">
 
       <button slot="ar-button" id="ar-button">
-         View in your space
+          View in your space
       </button>
 
       <div id="progress-bar" slot="progress-bar"></div>
